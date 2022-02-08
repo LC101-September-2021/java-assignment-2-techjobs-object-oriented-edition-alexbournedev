@@ -18,30 +18,41 @@ import static org.junit.Assert.*;
 @RunWith(JUnit4.class)
 public class JobTest {
 
+//  Job job1;
+//  Job job2;
+//
+//  @Before
+//  public void createJobObjects(){
+//    job1 = new Job();
+//    job2 = new Job();
+//  }
+
   @Test
   public void testSettingJobId() {
-    Job job1 = new Job();
-    Job job2 = new Job();
+    var job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+            new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    var job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+            new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
     assertEquals(1, job2.getId() - job1.getId());
   }
 
   @Test
   public void testJobConstructorSetsAllFields() {
-
-    var job = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+    var job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
             new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-    assertTrue(new Job() instanceof Job);
-    assertTrue(job.getEmployer() instanceof Employer);
-    assertTrue(job.getLocation() instanceof Location);
-    assertTrue(job.getPositionType() instanceof PositionType);
-    assertTrue(job.getCoreCompetency() instanceof CoreCompetency);
+    assertTrue(job1 instanceof Job);
+    assertTrue(job1.getEmployer() instanceof Employer);
+    assertTrue(job1.getLocation() instanceof Location);
+    assertTrue(job1.getPositionType() instanceof PositionType);
+    assertTrue(job1.getCoreCompetency() instanceof CoreCompetency);
 
-    assertEquals("Product tester", job.getName());
-    assertEquals("ACME", job.getEmployer().toString());
-    assertEquals("Desert", job.getLocation().toString());
-    assertEquals("Quality control", job.getPositionType().toString());
-    assertEquals("Persistence", job.getCoreCompetency().toString());
+    assertEquals("Product tester", job1.getName());
+    assertEquals("ACME", job1.getEmployer().toString());
+    assertEquals("Desert", job1.getLocation().toString());
+    assertEquals("Quality control", job1.getPositionType().toString());
+    assertEquals("Persistence", job1.getCoreCompetency().toString());
   }
 
   @Test
@@ -61,8 +72,11 @@ public class JobTest {
             new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
     String jobStr = job.toString();
-    assertTrue(jobStr.charAt(0) == '\n');
-    assertTrue(jobStr.charAt(jobStr.length() - 1) == '\n');
+    char firstIndex = jobStr.charAt(0);
+    char lastIndex = jobStr.charAt(jobStr.length() - 1);
+
+    assertEquals(firstIndex, '\n');
+    assertEquals(lastIndex, '\n');
   }
 
   @Test
@@ -71,6 +85,16 @@ public class JobTest {
             new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
     String jobStr = job.toString();
-    assertTrue(jobStr.contains("Data not available"));
+    assertEquals("Data not available", job.getName());
+  }
+
+  @Test
+  public void testToStringContainsCorrectLabelsAndData(){
+    var job = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+            new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+    String jobStr = job.toString();
+
+    assertEquals("Product tester", job.getName());
   }
 }

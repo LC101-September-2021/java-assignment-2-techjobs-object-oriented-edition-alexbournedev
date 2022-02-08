@@ -38,13 +38,17 @@ public class Job {
     // if .get[Field] is empty string, .set[Field] to "Data not available"
     if (this.getName().equals("")){
       this.setName("Data not available");
-    } else if (this.getEmployer().getValue().equals("")){
+    }
+    if (this.getEmployer().getValue().equals("")){
         this.setEmployer(new Employer("Data not available"));
-    } else if (this.getLocation().getValue().equals("")){
+    }
+    if (this.getLocation().getValue().equals("")){
         this.setLocation(new Location("Data not available"));
-    } else if (this.getPositionType().getValue().equals("")){
+    }
+    if (this.getPositionType().getValue().equals("")){
         this.setPositionType(new PositionType("Data not available"));
-    } else if (this.getCoreCompetency().getValue().equals("")){
+    }
+    if (this.getCoreCompetency().getValue().equals("")){
         this.setCoreCompetency(new CoreCompetency("Data not available"));
     }
 
