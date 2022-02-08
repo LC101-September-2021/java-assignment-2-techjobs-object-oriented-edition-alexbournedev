@@ -56,7 +56,7 @@ public class JobTest {
   }
 
   @Test
-  public void toStringStartsAndEndsWithBlankLines(){
+  public void testToStringStartsAndEndsWithNewLine(){
     var job = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
             new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
@@ -66,7 +66,7 @@ public class JobTest {
   }
 
   @Test
-  public void toStringSubstitutesTextWhenEmpty(){
+  public void testToStringHandlesEmptyField(){
     var job = new Job("", new Employer("ACME"), new Location("Desert"),
             new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
